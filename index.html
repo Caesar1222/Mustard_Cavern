@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mustard Cavern</title>
+  <style>
+    :root {
+      --bg: #0b0d12;
+      --card: #131722;
+      --accent: #f5c542; /* mustard */
+      --accent-2: #7c6cff;
+      --text: #e7e9ee;
+      --muted: #9aa1b2;
+      --glow: rgba(245, 197, 66, 0.35);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(124,108,255,0.15), transparent 60%),
+        radial-gradient(900px 500px at 110% 10%, rgba(245,197,66,0.12), transparent 55%),
+        var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+    }
+
+    .cavern {
+      width: min(92vw, 520px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.0)) , var(--card);
+      border-radius: 18px;
+      padding: 2.2rem 2rem 2rem;
+      box-shadow:
+        0 20px 50px rgba(0,0,0,0.55),
+        inset 0 1px 0 rgba(255,255,255,0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cavern::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      background: linear-gradient(120deg, transparent 20%, rgba(245,197,66,0.25), transparent 60%);
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    header {
+      display: grid;
+      gap: 0.5rem;
+      margin-bottom: 1.2rem;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+      letter-spacing: 0.5px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .badge {
+      margin: 0.6rem auto 0;
+      width: fit-content;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(245,197,66,0.12);
+      color: var(--accent);
+      border: 1px solid rgba(245,197,66,0.35);
+      box-shadow: 0 0 0 4px rgba(245,197,66,0.05);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 1.6rem 0 0;
+      display: grid;
+      gap: 0.7rem;
+    }
+
+    .file {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.8rem 0.9rem;
+      border-radius: 12px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+
+    .file:hover {
+      transform: translateY(-1px);
+      border-color: rgba(245,197,66,0.45);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.35), 0 0 0 6px rgba(245,197,66,0.08);
+    }
+
+    .file-name {
+      display: grid;
+      gap: 0.15rem;
+    }
+
+    .file-name span {
+      font-weight: 600;
+    }
+
+    .file-name small {
+      color: var(--muted);
+      font-size: 0.75rem;
+    }
+
+    .download {
+      text-decoration: none;
+      padding: 0.45rem 0.75rem;
+      border-radius: 10px;
+      color: #111;
+      background: linear-gradient(180deg, #ffe07a, var(--accent));
+      border: 1px solid rgba(0,0,0,0.25);
+      font-weight: 700;
+      font-size: 0.8rem;
+      box-shadow: 0 6px 14px var(--glow);
+      transition: filter 0.15s ease, transform 0.15s ease;
+    }
+
+    .download:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+
+    footer {
+      margin-top: 1.6rem;
+      padding-top: 1rem;
+      border-top: 1px dashed rgba(255,255,255,0.12);
+      color: var(--muted);
+      font-size: 0.8rem;
+      text-align: center;
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 4px; height: 4px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--glow);
+      animation: float 6s linear infinite;
+      opacity: 0.8;
+    }
+
+    .sparkle.s1 { left: 10%; top: 20%; animation-duration: 7s; }
+    .sparkle.s2 { left: 80%; top: 30%; animation-duration: 5.5s; }
+    .sparkle.s3 { left: 40%; top: 75%; animation-duration: 6.5s; }
+
+    @keyframes float {
+      0% { transform: translateY(0); opacity: 0.0; }
+      10% { opacity: 0.8; }
+      90% { opacity: 0.8; }
+      100% { transform: translateY(-30px); opacity: 0.0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="cavern">
+    <div class="sparkle s1"></div>
+    <div class="sparkle s2"></div>
+    <div class="sparkle s3"></div>
+
+    <header>
+      <h1>The Mustard Cavern Logs</h1>
+    </header>
+
+    <!--
+      GitHub Pages setup:
+      - Put files in /files
+      - Commit & push
+      - Add a block below per file
+    -->
+
+    <ul>
+      <li class="file">
+        <div class="file-name">
+          <span> Plutonium Bo2 download </span>
+          <small>  </small>
+        </div>
+        <a class="download" href="https://drive.google.com/file/d/1WI3tZcmHVOB2qmhl-gcwSkizf_QX3y_r/view?usp=sharing" download>download</a>
+      </li>
+      <!-- <li class="file">
+        <div class="file-name">
+          <span>Example ZIP</span>
+          <small>files/example.zip</small>
+        </div>
+        <a class="download" href="files/example.zip" download>Grab</a>
+      </li> -->
+    </ul>
+
+  </div>
+</body>
+</html>
